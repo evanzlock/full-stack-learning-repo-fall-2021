@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin");
 const dotenv = require("dotenv").config();
-const credentials = require("./cred.json");
+const credentials = require("./Cookie.json");
 
 // Connect to firebase and use firestore
 admin.initializeApp({
@@ -51,7 +51,21 @@ app.post("/users", async (req, res) => {
     return res.send({ msg: "Success", data: data });
   }
 });
-
+app.get("/users/:cutoff", async (req, res) => {
+  const cutoff = req.params.cutoff
+  if (!Number.isInteger(cutoff)) {
+    return res.json({ msg: "Invalid input" })
+  }
+  const snapshot = await db.collection("users").get();
+  const users = [];
+  const cutoff = req.params.cutoff
+  snapshot.forEach((doc) => {
+    if (doc.data().age > cutoff) {
+      users.push(doc.data());
+    }
+  });
+  return res.json({ msg: "Success", data: users });
+});
 // OPTIONAL: Write a function to delete users from the database
 // OPTIONAL: Write a function to update user information
 
