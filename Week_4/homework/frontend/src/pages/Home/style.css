@@ -10,3 +10,23 @@
   float: right;
   background-color: #ed7a11;
 } 
+.tasks
+{
+  display: flex;
+  flex-direction: row;
+  height: 15px;
+}
+.input
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.todo-container
+{
+  align-self: start;
+}
+.done-container
+{
+  align-self: start;
+}
