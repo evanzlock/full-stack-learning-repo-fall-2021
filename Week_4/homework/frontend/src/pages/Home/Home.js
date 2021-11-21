@@ -1,21 +1,22 @@
 import "./style.css";
 import { useEffect, useState, Fragment } from "react";
-import ListItem from "././components/ListItem/ListItem.js";
+import ListItem from "../../components/ListItem/ListItem.js";
 export default function Home() {
-  const [tasklist, setTaskList] = useState([])
+  const [tasklist, setTaskList] = useState(['test task'])
   const [tasks, setTask] = useState(0);
-  const [done, addCompleted] = useState([]);
+  const [doneList, setDone] = useState(['test done']);
 
   function addTask(task) {
     if (!tasklist.includes(task)) {
-      setTaskList(tasklist => [tasklist => tasklist.concat(task)])
-      setTask(tasks => tasks + 1)
+      setTaskList(tasklist.concat(task))
     }
     else {
-
+      alert("This task already exists")
     }
   }
+  function completeTask(index) {
 
+  }
   return (
     <Fragment>
       <h1>You have {tasks} tasks left to do  </h1>
