@@ -19,12 +19,13 @@ export default function Login() {
                 <input className="input"
                     placeholder="Password"
                     value={password}
+                    type="password"
                     onChange={(event) => setPassword(event.target.value)}
                 ></input>
             </div>
             <button className='button'> Login </button>
             <Link className='link' to='/signup'>
-                Signup
+                Sign up
             </Link>
         </div >
     );

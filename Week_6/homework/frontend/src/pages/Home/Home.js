@@ -1,5 +1,6 @@
 import "./style.css";
 import ListItem from "../../components/ListItem/ListItem.js";
+import Login from "../../components/Login/Login.js";
 import { useEffect, useState, Fragment } from "react";
 
 export default function Home() {
@@ -13,6 +14,20 @@ export default function Home() {
   // taskName: a string of the name of task that you want to add; setToDo: a function that allows you to edit the taskName
   const [taskName, setTaskName] = useState("");
 
+  useEffect(() => {
+    async function loadTodo() {
+      const request = fetch("localhost:3450/todos", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("@token")
+        },
+      })
+      const response = await request.json();
+      const status = await request.status;
+
+      const data = resp.data;
+      console.log(data);
+    }
+  }, [])
   // addTask: adds a task to toDo by adding the taskName
   function addTask() {
     console.log("addTask called");
@@ -45,15 +60,19 @@ export default function Home() {
 
   return (
     <Fragment>
-      {!!toDo.length && (
-        <h2 class="summary">
-          You have
-          {toDo.length > 1
-            ? " " + toDo.length + " tasks "
-            : " " + toDo.length + " task "}
-          left to do
-        </h2>
-      )}
+      {localStorage.getItem("@token") ?
+        (!!toDo.length && (
+          <h2 className="summary">
+            You have
+            {toDo.length > 1
+              ? " " + toDo.length + " tasks "
+              : " " + toDo.length + " task "}
+            left to do
+          </h2>)) :
+        <div id="login">
+          <Login></Login>
+        </div>
+      }
       <div className="input-container">
         <input
           className="input-task"
@@ -61,7 +80,7 @@ export default function Home() {
           placeholder="Type your task here"
           onChange={(event) => setTaskName(event.target.value)}
         ></input>
-        <button class="add-button" onClick={() => addTask()}>
+        <button className="add-button" onClick={() => addTask()}>
           Add
         </button>
       </div>

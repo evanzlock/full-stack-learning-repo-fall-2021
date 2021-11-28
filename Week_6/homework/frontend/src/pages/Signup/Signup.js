@@ -7,7 +7,7 @@ export default function Signup() {
     return (
         <div className='main-container'>
             <div className='input-container'>
-                <h1>Signup</h1>
+                <h1>Sign up</h1>
                 <input className="input"
                     placeholder="Username"
                     value={username}
@@ -16,13 +16,11 @@ export default function Signup() {
                 <input className="input"
                     placeholder="Password"
                     value={password}
+                    type="password"
                     onChange={(event) => setPassword(event.target.value)}
                 ></input>
             </div>
-            <button className='button'> Signup </button>
-            <Link className='link' to='/'>
-                Signup
-            </Link>
+            <button className='button'> Sign up </button>
         </div >
     );
 }

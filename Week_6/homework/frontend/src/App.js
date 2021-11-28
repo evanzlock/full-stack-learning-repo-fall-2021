@@ -6,6 +6,7 @@ import Header from "./components/Header/Header.js";
 import Home from "./pages/Home/Home.js";
 import Login from "./pages/Login/Login.js";
 import Signup from "./pages/Signup/Signup.js";
+import "./components/Firebase/firebase.js";
 export default function App() {
   return (
     <div className="global-container">
